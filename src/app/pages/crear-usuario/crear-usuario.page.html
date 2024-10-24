@@ -1,13 +1,25 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>crear-usuario</ion-title>
+  <ion-toolbar class="barra">
+    <ion-title>Crear Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">crear-usuario</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-img src="assets/login.svg" class="img-login"></ion-img>
+  <ion-item>
+    <ion-input [(ngModel)]="mdl_nombre" label="Nombre" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="mdl_apellido" label="Apellido" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="mdl_correo" label="Correo" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="mdl_contrasena" label="Contraseña" type="password"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="crearUsuario()">Crear Cuenta</ion-button>
+
+
 </ion-content>
