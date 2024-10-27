@@ -1,13 +1,36 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
+  <ion-toolbar class="barra">
+    <ion-title>Bienvenido</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-img src="assets/login.svg" class="img-login"></ion-img>
+
+    <div class="ion-margin ion-text-center">
+      <ion-label class="titulo"> ¡Ingresa tus datos!</ion-label>
+    </div>
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <ion-input [(ngModel)]="mdl_correo" label="Correo Electronico" label-placement="floating" fill="solid" placeholder="Correo Electronico"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-input [(ngModel)]="mdl_contrasena" label="Contraseña" type="password" label-placement="floating" fill="solid" placeholder="Contraseña"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button class="boton">Ingresar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    <ion-button class="boton" (click)="navegarCrearUsuario()" expand="block" fill="clear">Crear Cuenta</ion-button>
 </ion-content>
