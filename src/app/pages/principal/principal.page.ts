@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DblocalService } from 'src/app/services/database/dblocal.service';
 
 @Component({
   selector: 'app-principal',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalPage implements OnInit {
 
-  constructor() { }
+  constructor(private db: DblocalService) { }
 
   ngOnInit() {
+    this.db.abrirBaseDeDatos();
   }
 
 }
