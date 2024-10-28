@@ -1,13 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>modificar-contrasena</ion-title>
+    <ion-item>
+      <ion-title>modificar-contrasena</ion-title>
+      <ion-button size="large" (click)="volverPagePrincial()"><ion-icon slot="icon-only" name="close-circle-outline"></ion-icon></ion-button>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">modificar-contrasena</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item>
+    <ion-input [disabled]="true" [(ngModel)]="mdl_correo" label="Correo" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="mdl_carrera" label="Carrera" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="mdl_contrasena" label="Contraseña" type="password"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="modificarCarreraContrasena()">Modificar Datos</ion-button>
 </ion-content>

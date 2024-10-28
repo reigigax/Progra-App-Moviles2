@@ -28,4 +28,17 @@ export class ApiService {
 
     return this.http.post(this.ruta + '/api_duoc/usuario/usuario_login', objeto).pipe()
   }
+
+  buscarSedesApi(){
+    return this.http.get(this.ruta + '/api_duoc/usuario/sedes_obtener').pipe()
+  }
+
+  modificarUsuarioApi(inputCorreo: string, inputContrasena: string, inputCarrera: string) {
+    let objeto: any = {}
+    objeto.correo = inputCorreo;
+    objeto.contrasena = inputContrasena;
+    objeto.carrera = inputCarrera;
+
+    return this.http.patch(this.ruta + '/api_duoc/usuario/usuario_modificar', objeto).pipe()
+  }
 }

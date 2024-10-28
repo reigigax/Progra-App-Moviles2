@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api/api.service';
 
@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 })
 export class LoginPage implements OnInit {
 
+  usuarioLogeado: any [] = []
   mdl_correo: string = '';
   mdl_contrasena: string = '';
 
@@ -23,6 +24,8 @@ export class LoginPage implements OnInit {
   }
 
   async iniciarSesion() {
+    this.usuarioLogeado = [];
+
     let datos = this.api.loginUsuarioApi(this.mdl_correo, this.mdl_contrasena);
     let respuesta = await lastValueFrom(datos);
 
@@ -31,7 +34,17 @@ export class LoginPage implements OnInit {
     
     if(json.status == "success"){
       console.log(json.status, ":", json.message);
-      this.router.navigate(["principal"]);
+      this.usuarioLogeado = json.usuario;
+
+      let extras: NavigationExtras = {
+        state: {
+          "usuario": this.usuarioLogeado 
+        },
+        replaceUrl: true
+      }
+      console.log(this.usuarioLogeado);
+
+      this.router.navigate(["principal"], extras);
     } else {
       console.log(json.status, ":", json.message)
     }
