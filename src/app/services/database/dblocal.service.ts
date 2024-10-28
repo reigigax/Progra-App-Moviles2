@@ -6,14 +6,15 @@ import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 })
 export class DblocalService {
 
-  private dblocal: SQLiteObject | null = null;
+  private dblocal: SQLiteObject | null = null
 
   constructor(private sqlite: SQLite) { }
-  
-  async abrirBaseDeDatos() {
-    this.dblocal = await this.sqlite.create({
-      name: "datalogin.db",
+
+  async abrirBaseDeDatos () {
+      this.dblocal = await this.sqlite.create({
+      name: "datos.db",
       location: "default"
     });
   }
+
 }

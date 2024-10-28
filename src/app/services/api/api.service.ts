@@ -6,26 +6,26 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
 
-  ruta: String = 'https://www.s2-studio.cl';
+  ruta: string = 'https://www.s2-studio.cl';
 
   constructor(private http: HttpClient) { }
 
-  crearUsuarioApi(correo: string, contrasena: string, nombre: string, apellido: string, carrera: string) {
-    let objeto: any = {};
-    objeto.correo = correo;
-    objeto.contrasena = contrasena;
-    objeto.nombre = nombre;
-    objeto.apellido = apellido;
-    objeto.carrera = carrera;
+  creacioUsuarioApi(inputCorreo: string, inputContrasena: string, inputNombre: string, inputApellido: string, inputCarrera: string) {
+    let objeto: any = {}
+    objeto.correo = inputCorreo;
+    objeto.contrasena = inputContrasena;
+    objeto.nombre = inputNombre;
+    objeto.apellido = inputApellido;
+    objeto.carrera = inputCarrera;
 
-    return this.http.post(this.ruta + '/api_duoc/usuario/usuario_almacenar', objeto).pipe();
+    return this.http.post(this.ruta + '/api_duoc/usuario/usuario_almacenar', objeto).pipe()
   }
+  
+  loginUsuarioApi(inputCorreo: string, inputContrasena: string) {
+    let objeto: any = {}
+    objeto.correo = inputCorreo;
+    objeto.contrasena = inputContrasena;
 
-  validacionLogin(correo: string, contrasena: string){
-    let objeto: any = {};
-    objeto.correo = correo;
-    objeto.contrasena = contrasena;
-
-    return this.http.post(this.ruta + '/api_duoc/usuario/usuario_login', objeto).pipe();
+    return this.http.post(this.ruta + '/api_duoc/usuario/usuario_login', objeto).pipe()
   }
 }

@@ -21,23 +21,18 @@ export class CrearUsuarioPage implements OnInit {
   ngOnInit() {
   }
 
-  irLogin() {
-    this.router.navigate(['login']);
-  }
-
   async crearUsuario() {
-    let datos = this.api.crearUsuarioApi(this.mdl_correo, this.mdl_contrasena, this.mdl_nombre, this.mdl_apellido, this.mdl_carrera);
+    let datos = this.api.creacioUsuarioApi(this.mdl_correo, this.mdl_contrasena, this.mdl_nombre, this.mdl_apellido, this.mdl_carrera);
     let respuesta = await lastValueFrom(datos);
 
     let json_texto = JSON.stringify(respuesta);
     let json = JSON.parse(json_texto);
 
-    if(json[0].status == 'Error') {
-      console.log(json[0].message)
-      this.router.navigate(['login'])
+    if(json.status == "success") {
+      console.log(json.status,":", json.message)
+      this.router.navigate(["login"])
     } else {
-      console.log(json[0].RESPUESTA)
+      console.log(json.status,":", json.message)
     }
   }
-
 }
