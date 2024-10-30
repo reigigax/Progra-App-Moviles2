@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" >
   <ion-toolbar>
     <ion-item>
       <ion-title>Principal - {{ this.extrasUsuarioLogeado.correo }}</ion-title>
@@ -8,7 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="fondo">
   <ion-item *ngFor="let x of lista_sedes">
     <ion-card>
       <img alt="{{ x.nombre }}" src="{{ x.imagen }}"/>

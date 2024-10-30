@@ -1,26 +1,45 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class="barra">
-    <ion-title>Crear Usuario</ion-title>
-  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-img src="assets/login.svg" class="img-login"></ion-img>
-  <ion-item>
-    <ion-input [(ngModel)]="mdl_nombre" label="Nombre" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="mdl_apellido" label="Apellido" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="mdl_correo" label="Correo" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="mdl_contrasena" label="Contraseña" type="password"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="mdl_carrera" label="Carrera" type="text"></ion-input>
-  </ion-item>
+<ion-content [fullscreen]="true" class="fondo">
+  <ion-img src="assets/crear-usuario.svg" class="img-crear-usuario"></ion-img>
+
+  <div class="ion-margin ion-text-center">
+    <ion-label class="titulo"> Creación de un nuevo usuario</ion-label>
+  </div>
+
+  
+  <ion-row>
+    <ion-col>
+      <ion-input [(ngModel)]="mdl_nombre" label="Nombre"  label-placement="floating" fill="outline"  placeholder="Nombre"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+    <ion-input [(ngModel)]="mdl_apellido" label="Apellido" label-placement="floating" fill="outline"  placeholder="Apellido"></ion-input>
+  </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-input [(ngModel)]="mdl_correo" label="Correo" label-placement="floating" fill="outline"  placeholder="Apellido"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row> 
+    <ion-col>
+      <ion-input [(ngModel)]="mdl_contrasena" label="Contraseña" type="password" label-placement="floating" fill="outline"  placeholder="Contraseña"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-input [(ngModel)]="mdl_carrera"  label="Carrera"  label-placement="floating" fill="outline" placeholder="Carrera"></ion-input>
+    </ion-col>
+  </ion-row>
+
 
   <ion-button expand="block" (click)="crearUsuario()">Crear Cuenta</ion-button>
 </ion-content>
+

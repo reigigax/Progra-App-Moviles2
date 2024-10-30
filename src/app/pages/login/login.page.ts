@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api/api.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginPage implements OnInit {
   mdl_correo: string = '';
   mdl_contrasena: string = '';
 
-  constructor(private router: Router, private api: ApiService) { }
+  constructor(private router: Router, private api: ApiService, private toastController: ToastController) { }
 
   ngOnInit() {
   }
@@ -27,7 +28,10 @@ export class LoginPage implements OnInit {
     this.usuarioLogeado = [];
 
     let datos = this.api.loginUsuarioApi(this.mdl_correo, this.mdl_contrasena);
-    let respuesta = await lastValueFrom(datos);
+    let respuesta = await lastValueFrom(datos) as {status: string, message: string};
+
+    console.log("Respuesta de la API", respuesta);
+
 
     let json_texto = JSON.stringify(respuesta);
     let json = JSON.parse(json_texto); 
@@ -48,5 +52,16 @@ export class LoginPage implements OnInit {
     } else {
       console.log(json.status, ":", json.message)
     }
+
+    
+  }
+  async alerta(message: string){
+    const alertaToast = await this.toastController.create({
+        message: message,
+        duration: 3000,
+        position: 'bottom',
+        cssClass: 'custom-toast'
+    });
+    await alertaToast.present();
   }
 }

@@ -37,16 +37,36 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 
 
-.barra{
-    --backgroung: #576CF1;
-    --color: #000000;
-}
+
 
 .fondo{
-    --background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(87,108,241,1) 100%);
+    --background:  #84b6f4; 
+    --color: #000000;
+    
+}
+
+.boton{
+    width: 100%;
+    height: 56px;
+    --backgroung: #005187;
+    --color: #000000;
+    margin-left: -0.1px;
+}
+
+.tituto{
+    font-size: 21px;
+    font-weight: bold;
+    color: #000000;
 }
 
 .img-login{
+    margin-top: 55px;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-crear-usuario{
     margin-top: 55px;
     width: 30%;
     margin-left: auto;
@@ -58,18 +78,4 @@
     width: 60%;
     margin-left: auto;
     margin-right: auto;
-}
-
-.boton{
-    width: 100%;
-    height: 56px;
-    --backgroung: #576CF1;
-    --color: #000000;
-    margin-left: -0.1px;
-}
-
-.tituto{
-    font-size: 21px;
-    font-weight: bold;
-    color: #000000;
 }
