@@ -17,7 +17,6 @@ export class CrearUsuarioPage implements OnInit {
   mdl_apellido: string = '';
   mdl_carrera: string = '';
 
-  
   constructor(private router: Router, private api: ApiService, private toastController: ToastController) { }
 
   ngOnInit() {
@@ -30,23 +29,41 @@ export class CrearUsuarioPage implements OnInit {
     console.log("Respuesta de la API", respuesta);
   
     if(respuesta.status === 'success') {
-      this.alerta(`{Usuario Creado: ${respuesta.message}`);
+      this.alerta_confirmacion(`${respuesta.message}`);
       this.router.navigate(["login"])
     } else if (respuesta.status === 'error'){
-      this.alerta(`Error: ${respuesta.message}`);
+      this.alerta_error(`Error: ${respuesta.message}`);
     }
   } catch (error: any){
     console.error("Error en la creación del usuario:", error);
-    this.alerta('Error en la creación del usuario.');
   }
-  async alerta(message: string){
+
+  async alerta_confirmacion(message: string){
     const alertaToast = await this.toastController.create({
         message: message,
         duration: 3000,
         position: 'bottom',
-        cssClass: 'custom-toast'
+        cssClass: 'custom-toast',
+        icon: 'checkmark-circle-outline',
+        color: 'success'
     });
     await alertaToast.present();
   }
   
+  async alerta_error(message: string){
+    const alertaToast = await this.toastController.create({
+        message: message,
+        duration: 3000,
+        position: 'bottom',
+        cssClass: 'custom-toast',
+        icon: 'alert-circle-outline',
+        color: 'warning'
+    });
+    await alertaToast.present();
+  }
+  
+  volverLogin() {
+    this.router.navigate([("login")])
+  }
+
 }

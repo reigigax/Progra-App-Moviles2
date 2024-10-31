@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api/api.service';
 import { DblocalService } from 'src/app/services/database/dblocal.service';
@@ -12,19 +12,11 @@ import { DblocalService } from 'src/app/services/database/dblocal.service';
 export class PrincipalPage implements OnInit {
 
   lista_sedes: any [] = [];
-  usuarioLogeado: any [] = [];
-  extrasUsuarioLogeado: any = {};
 
   constructor(private db: DblocalService, private api: ApiService, private router: Router) { }
 
   ngOnInit() {
-    let extras = this.router.getCurrentNavigation()?.extras;
-    if(extras?.state) {
-      this.extrasUsuarioLogeado = extras.state["usuario"]
-    }
     this.buscarSedes();
-    this.usuarioLogeado = this.extrasUsuarioLogeado;    
-    console.log(this.extrasUsuarioLogeado);
   }
 
   async buscarSedes() {
@@ -57,12 +49,6 @@ export class PrincipalPage implements OnInit {
   }
 
   irModificarContrasena() {
-    let extras: NavigationExtras = {
-      state: {
-        "usuario": this.usuarioLogeado 
-      },
-      replaceUrl: true
-    }
-    this.router.navigate(["modificar-contrasena"], extras)
+    this.router.navigate(["modificar-contrasena"])
   }
 }

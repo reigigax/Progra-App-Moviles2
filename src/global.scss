@@ -37,12 +37,9 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 
 
-
-
 .fondo{
-    --background:  #84b6f4; 
+    --background: linear-gradient(0deg, #af7ead 0%, #84b6f4 100%); 
     --color: #000000;
-    
 }
 
 .boton{
@@ -53,8 +50,15 @@
     margin-left: -0.1px;
 }
 
+.boton-secundario{
+    width: 100%;
+    height: 56px;
+    --color: #ffffff;
+    margin-left: -0.1px;
+}
+
 .tituto{
-    font-size: 21px;
+    font-size: 5rem;
     font-weight: bold;
     color: #000000;
 }
@@ -78,4 +82,8 @@
     width: 60%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.custom-toast {
+    text-align: center;
 }

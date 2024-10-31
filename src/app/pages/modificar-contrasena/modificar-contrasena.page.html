@@ -1,21 +1,33 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-item>
-      <ion-title>modificar-contrasena</ion-title>
-      <ion-button size="large" (click)="volverPagePrincial()"><ion-icon slot="icon-only" name="close-circle-outline"></ion-icon></ion-button>
-    </ion-item>
-  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-input [disabled]="true" [(ngModel)]="mdl_correo" label="Correo" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="mdl_carrera" label="Carrera" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="mdl_contrasena" label="Contraseña" type="password"></ion-input>
-  </ion-item>
-  <ion-button expand="block" (click)="modificarCarreraContrasena()">Modificar Datos</ion-button>
+<ion-content [fullscreen]="true" class="fondo">
+    
+  <ion-img src="assets/crear-usuario.svg" class="img-crear-usuario"></ion-img>
+  
+  <div class="ion-margin ion-text-center">
+    <ion-label class="titulo">Modificar Contraseña y/o Carrera</ion-label>
+  </div>
+
+  <ion-row>
+    <ion-col>
+      <ion-input [(ngModel)]="mdl_correo" label="Correo Electronico" label-placement="floating" fill="outline" placeholder="Correo Electronico" type="text"></ion-input>
+    </ion-col>
+  </ion-row>
+  
+  <ion-row>
+    <ion-col>
+      <ion-input [(ngModel)]="mdl_carrera" label="Carrera" label-placement="floating" fill="outline" placeholder="Carrera" type="text"></ion-input>
+    </ion-col>
+  </ion-row>
+  
+  <ion-row>
+    <ion-col> 
+      <ion-input [(ngModel)]="mdl_contrasena" label="Contraseña" label-placement="floating" fill="outline" placeholder="Contraseña" type="password"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-button class="boton" expand="block" (click)="modificarCarreraContrasena()">Modificar Datos</ion-button>
+  <ion-button class="boton-secundario" expand="block" fill="clear" (click)="volverPagePrincial()">Volver</ion-button>
+
 </ion-content>

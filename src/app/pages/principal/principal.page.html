@@ -1,23 +1,23 @@
-<ion-header [translucent]="true" >
-  <ion-toolbar>
-    <ion-item>
-      <ion-title>Principal - {{ this.extrasUsuarioLogeado.correo }}</ion-title>
-      <ion-button size="large" (click)="irModificarContrasena()"><ion-icon slot="icon-only" name="person-circle-outline"></ion-icon></ion-button>
-      <ion-button size="large" (click)="cerrarSesion()"><ion-icon slot="icon-only" name="log-out-outline"></ion-icon></ion-button>
+<ion-header [translucent]="true">
+  <ion-toolbar class="card-principal">
+    <ion-item lines="none" class="ion-margin fondo-trasnparente">
+      <ion-title><ion-icon class="icono-principal" name="home-outline"></ion-icon>Inicio</ion-title>
+      <ion-button class="texto-principal" fill="clear" size="large" (click)="irModificarContrasena()"><ion-icon slot="icon-only" name="person-circle-outline"></ion-icon></ion-button>
+      <ion-button class="texto-principal" fill="clear" size="large" (click)="cerrarSesion()"><ion-icon slot="icon-only" name="log-out-outline"></ion-icon></ion-button>
     </ion-item>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="fondo">
-  <ion-item *ngFor="let x of lista_sedes">
-    <ion-card>
-      <img alt="{{ x.nombre }}" src="{{ x.imagen }}"/>
-    <ion-card-header>
-      <ion-card-title>{{ x.nombre }}</ion-card-title>
-      <ion-card-subtitle><ion-icon name="location-outline"></ion-icon> {{ x.direccion }}</ion-card-subtitle>
-      <ion-card-subtitle><ion-icon name="calendar-outline"></ion-icon> {{ x.horarioAtencion }}</ion-card-subtitle>
-      <ion-card-subtitle><ion-icon name="call-outline"></ion-icon> {{ x.telefono }} </ion-card-subtitle>
-    </ion-card-header>
-  </ion-card>
-  </ion-item>
+<ion-content [fullscreen]="true">
+    <ion-item lines="none" *ngFor="let x of lista_sedes" class="fondo-principal">
+      <ion-card class="card-principal">
+        <img alt="{{ x.nombre }}" src="{{ x.imagen }}"/>
+        <ion-card-header>
+          <ion-card-title class="texto-principal">{{ x.nombre }}</ion-card-title>
+          <ion-card-subtitle class="texto-principal"><ion-icon name="location-outline"></ion-icon> {{ x.direccion }}</ion-card-subtitle>
+          <ion-card-subtitle class="texto-principal"><ion-icon name="calendar-outline"></ion-icon> {{ x.horarioAtencion }}</ion-card-subtitle>
+          <ion-card-subtitle class="texto-principal"><ion-icon name="call-outline"></ion-icon> {{ x.telefono }} </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-item>
 </ion-content>

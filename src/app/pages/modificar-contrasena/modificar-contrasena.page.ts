@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api/api.service';
 
@@ -10,24 +11,13 @@ import { ApiService } from 'src/app/services/api/api.service';
 })
 export class ModificarContrasenaPage implements OnInit {
 
-  usuarioLogeado: any [] = [];
-  extrasUsuarioLogeado: any = {};
   mdl_correo: string = '';
   mdl_carrera: string = '';
   mdl_contrasena: string = '';
 
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(private api: ApiService, private router: Router, private toastController: ToastController) { }
 
   ngOnInit() {
-    let extras = this.router.getCurrentNavigation()?.extras;
-    if(extras?.state) {
-      this.extrasUsuarioLogeado = extras.state["usuario"]
-    }
-    this.usuarioLogeado = this.extrasUsuarioLogeado;
-    console.log(this.extrasUsuarioLogeado)
-
-    this.mdl_correo = this.extrasUsuarioLogeado.correo;
-    this.mdl_carrera = this.extrasUsuarioLogeado.carrera;
   }
 
   volverPagePrincial() {
@@ -36,18 +26,43 @@ export class ModificarContrasenaPage implements OnInit {
 
   async modificarCarreraContrasena() {
     let datos = this.api.modificarUsuarioApi(this.mdl_correo, this.mdl_contrasena, this.mdl_carrera);
-    let respuesta = await lastValueFrom(datos);
+    let respuesta = await lastValueFrom(datos) as {status: string, message: string};
 
-    let json_texto = JSON.stringify(respuesta);
-    let json = JSON.parse(json_texto);
-
-    if(json.status == "success") {
-      console.log(json.message)
-      console.log(this.extrasUsuarioLogeado.correo, "->", this.mdl_correo)
-      console.log(this.extrasUsuarioLogeado.contrasena, "->", this.mdl_contrasena)
-      console.log(this.extrasUsuarioLogeado.carrera, "->", this.mdl_carrera)
-    } else {
-      console.log(json.message)
+    console.log("Respuesta de la API", respuesta);
+    
+    if(respuesta.status === 'success') {
+      this.alerta_confirmacion(`${respuesta.message}`);
+      this.router.navigate(["principal"])
+    } else if (respuesta.status === 'error'){
+      this.alerta_error(`Error: ${respuesta.message}`);
     }
+  } catch (error: any){
+    console.error("Error en la creación del usuario:", error);
   }
+  
+  async alerta_confirmacion(message: string){
+    const alertaToast = await this.toastController.create({
+        message: message,
+        duration: 3000,
+        position: 'bottom',
+        cssClass: 'custom-toast',
+        icon: 'checkmark-circle-outline',
+        color: 'success'
+    });
+    await alertaToast.present();
+  }
+  
+  async alerta_error(message: string){
+    const alertaToast = await this.toastController.create({
+        message: message,
+        duration: 3000,
+        position: 'bottom',
+        cssClass: 'custom-toast',
+        icon: 'alert-circle-outline',
+        color: 'warning'
+    });
+    await alertaToast.present();
+  }
+
+  
 }
