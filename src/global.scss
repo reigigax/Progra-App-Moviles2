@@ -42,11 +42,21 @@
     --color: #000000;
 }
 
+.fondo-nav {
+    --background: linear-gradient(0deg, #af7ead 0%, #005187 100%); 
+    --color: #ffffff;
+}
+
+.fondo-trasnparente {
+    --background: #ffffff00;
+    --color: #ffffff;
+}
+
 .boton{
     width: 100%;
     height: 56px;
-    --backgroung: #005187;
-    --color: #000000;
+    --background: #005187;
+    --color: #ffffff;
     margin-left: -0.1px;
 }
 

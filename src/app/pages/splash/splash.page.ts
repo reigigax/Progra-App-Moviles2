@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DblocalService } from 'src/app/services/database/dblocal.service';
 
 @Component({
   selector: 'app-splash',
@@ -8,11 +9,18 @@ import { Router } from '@angular/router';
 })
 export class SplashPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dblocal: DblocalService) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.router.navigate(['login']);
+    this.dblocal.crearTablaUsuario();
+
+    setTimeout(async () => {
+      let usuariosLogeados = await this.dblocal.verificarUsuarioLogeado();
+      if (usuariosLogeados == "0"){
+        this.router.navigate(['login']);
+      } else {
+        this.router.navigate(["principal"]);
+      }
     }, 1000);
   }
 

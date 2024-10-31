@@ -1,4 +1,9 @@
 <ion-header [translucent]="true">
+  <ion-toolbar class="fondo-nav">
+    <ion-item lines="none" class="fondo-trasnparente ion-margin ion-text-center">
+      <ion-title>Modificación de Datos</ion-title>
+    </ion-item>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="fondo">
@@ -11,7 +16,7 @@
 
   <ion-row>
     <ion-col>
-      <ion-input [(ngModel)]="mdl_correo" label="Correo Electronico" label-placement="floating" fill="outline" placeholder="Correo Electronico" type="text"></ion-input>
+      <ion-input [disabled]="true" [(ngModel)]="mdl_correo" label="Correo Electronico" label-placement="floating" fill="outline" placeholder="Correo Electronico" type="text"></ion-input>
     </ion-col>
   </ion-row>
   
@@ -27,7 +32,16 @@
     </ion-col>
   </ion-row>
 
-  <ion-button class="boton" expand="block" (click)="modificarCarreraContrasena()">Modificar Datos</ion-button>
-  <ion-button class="boton-secundario" expand="block" fill="clear" (click)="volverPagePrincial()">Volver</ion-button>
+  <ion-row>
+    <ion-col>
+      <ion-button class="boton" expand="block" (click)="modificarCarreraContrasena()">Modificar Datos</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-button class="boton-secundario" expand="block" fill="clear" (click)="volverPagePrincial()">Volver</ion-button>
+    </ion-col>
+  </ion-row>
 
 </ion-content>

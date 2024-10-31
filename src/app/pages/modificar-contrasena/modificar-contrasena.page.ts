@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api/api.service';
+import { DblocalService } from 'src/app/services/database/dblocal.service';
 
 @Component({
   selector: 'app-modificar-contrasena',
@@ -15,9 +16,17 @@ export class ModificarContrasenaPage implements OnInit {
   mdl_carrera: string = '';
   mdl_contrasena: string = '';
 
-  constructor(private api: ApiService, private router: Router, private toastController: ToastController) { }
+  constructor(private api: ApiService, private dblocal: DblocalService, private router: Router, private toastController: ToastController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.mdl_correo = '';
+    this.mdl_carrera = '';
+    this.mdl_contrasena = '';
+
+    let usuarioLogeado = await this.dblocal.consultarUsuarioLogeado();
+    
+    this.mdl_correo = usuarioLogeado.correo.replace(/[ '"]+/g, '');
+    this.mdl_carrera = usuarioLogeado.carrera.replace(/[ '"]+/g, '');
   }
 
   volverPagePrincial() {

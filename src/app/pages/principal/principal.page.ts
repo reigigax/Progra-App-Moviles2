@@ -13,9 +13,9 @@ export class PrincipalPage implements OnInit {
 
   lista_sedes: any [] = [];
 
-  constructor(private db: DblocalService, private api: ApiService, private router: Router) { }
+  constructor(private dblocal: DblocalService, private api: ApiService, private router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.buscarSedes();
   }
 
@@ -45,6 +45,7 @@ export class PrincipalPage implements OnInit {
   }
   
   cerrarSesion() {
+    this.dblocal.eliminarSesionUsuario();
     this.router.navigate(["login"]);   
   }
 
