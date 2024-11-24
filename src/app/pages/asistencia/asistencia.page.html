@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="fondo-nav">
+    <ion-item lines="none" class="ion-margin fondo-trasnparente">
+      <ion-button class="texto-asistencia" fill="clear" size="large" (click)="volverPagePrincipal()" ><ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon></ion-button>
+      <ion-title>Registro de Asistencia</ion-title>
+      <ion-icon class="texto-asistencia" name="library"></ion-icon>
+    </ion-item>  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="fondo-asistencia">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="scannear()" [disabled]="!isSupported" class="fondo-nav">
+      <ion-icon name="qr-code-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-item lines="none" *ngFor="let x of asistenciasApi" class="fondo-asistencia">
+    <ion-card class="{{ x.fondoStyle }}">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="card-content">
+            <ion-card-header>
+              <ion-card-title>{{ x.cursoSiglaApi }}</ion-card-title>
+              <ion-card-subtitle color="ligth">{{ x.cursoNombreApi }}</ion-card-subtitle>
+            </ion-card-header>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-icon color="{{ x.iconStyle }}" size="small" [name]="x.iconName"></ion-icon>
+          </ion-col> 
+        </ion-row>
+        <ion-row>
+          <ion-col style="max-width: 6%;"></ion-col>
+          <ion-col style="max-width: 35%;">
+            <ion-label>Clases Presente:</ion-label>
+          </ion-col>
+          <ion-col size="auto">
+            {{ x.presenteApi }}
+          </ion-col>
+          <ion-col style="max-width: 20%;"></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="max-width: 6%;"></ion-col>
+          <ion-col style="max-width: 35%;">
+            <ion-label>Clases Ausente:</ion-label>
+          </ion-col>
+          <ion-col size="auto">
+            {{ x.ausenteApi }}
+          </ion-col>
+          <ion-col style="max-width: 20%;"></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-card-content class="text-porcentaje-asistencia">
+            <ion-col>
+              Porcentaje de Asistencia:
+            </ion-col>
+            <ion-col>
+              {{ x.porcentajeAsistencias }}%
+            </ion-col>
+          </ion-card-content>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-item>
+</ion-content>

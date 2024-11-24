@@ -41,4 +41,17 @@ export class ApiService {
 
     return this.http.patch(this.ruta + '/api_duoc/usuario/usuario_modificar', objeto).pipe()
   }
+
+  marcarAsistenciaQrApi(inputSigla: string, inputCorreo: string, inputFecha: string) {
+    let objeto: any = {}
+    objeto.sigla = inputSigla
+    objeto.correo = inputCorreo
+    objeto.fecha = inputFecha
+    
+    return this.http.post(this.ruta + '/api_duoc/usuario/marcar_asistencia', objeto).pipe()
+  }
+
+  obtenerAsistenciaApi(inputCorreo: string){
+    return this.http.get(this.ruta + '/api_duoc/usuario/asistencia_obtener?correo=' + inputCorreo).pipe()
+  }
 }

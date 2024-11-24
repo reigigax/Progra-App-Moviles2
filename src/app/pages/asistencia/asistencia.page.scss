@@ -1,0 +1,41 @@
+.fondo-card-asistencia {
+    --background: #84b6f4;
+    --color: #000000;
+}
+
+.fondo-asistencia {
+    --background: #3e314b;
+}
+
+.texto-asistencia {
+    --color: #ffffff;
+}
+
+.asistencia-card-success {
+    --background: linear-gradient(70deg, #005187, #6f762c);
+    --color: #ffffff; 
+    width: 100%
+}
+.asistencia-card-warning {
+    --background: linear-gradient(70deg, #005187, #764d2c);
+    --color: #ffffff; 
+    width: 100%
+}
+.asistencia-card-danger {
+    --background: linear-gradient(70deg, #005187, #76332c);
+    --color: #ffffff; 
+    width: 100%
+}
+
+.text-porcentaje-asistencia {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.card-content {
+    width: 80%;
+}
+
+.card-width {
+    max-width: 80%;
+}

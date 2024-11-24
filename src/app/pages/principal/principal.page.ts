@@ -52,4 +52,8 @@ export class PrincipalPage implements OnInit {
   irModificarContrasena() {
     this.router.navigate(["modificar-contrasena"])
   }
+
+  irRegistroAsistencia() {
+    this.router.navigate(["asistencia"])
+  }
 }
