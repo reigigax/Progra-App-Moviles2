@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api/api.service';
 import { DblocalService } from 'src/app/services/database/dblocal.service';
@@ -18,7 +18,7 @@ export class AsistenciaPage implements OnInit {
   codigosQr: Barcode[] = [];
   isSupported = false;
 
-  constructor( private router: Router, private dblocal: DblocalService, private api: ApiService, private alertController: AlertController) { }
+  constructor(private router: Router, private dblocal: DblocalService, private api: ApiService, private alertController: AlertController, private toastController: ToastController) { }
 
   async ngOnInit() {
     this.obtenerAsistenciasRegistradas();
@@ -40,6 +40,30 @@ export class AsistenciaPage implements OnInit {
       message: 'Porfavor autoriza el permiso para usutizar la camara para escanear el codigo QR',
       buttons: ['OK'],
     });
+  }
+
+  async alertaQRSuccess(message: string) {
+    const alertaToast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+      cssClass: 'custom-toast',
+      icon: 'checkmark-circle-outline',
+      color: 'success'
+    });
+    await alertaToast.present();
+  }
+
+  async alertaQRError(message: string) {
+    const alertaToast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+      cssClass: 'custom-toast',
+      icon: 'close-circle-outline',
+      color: 'danger'
+    });
+    await alertaToast.present();
   }
 
   async scannear(): Promise<void> {
@@ -74,6 +98,11 @@ export class AsistenciaPage implements OnInit {
 
     console.log("QrScann: Subiendo Datos Qr. Status:", json.status, ", Respuesta: ", json.message);
     
+    if(json.message == 'Asistencia grabada correctamente') {
+      this.alertaQRSuccess("Asistencia Registrada Exitosamente")
+    } else {
+      this.alertaQRError("Error, Usted ya se Encuentra Registrado")
+    }
     this.obtenerAsistenciasRegistradas();
   }
 
